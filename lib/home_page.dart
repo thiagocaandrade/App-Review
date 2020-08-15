@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lecheta/pages/hello_listview.dart';
-import 'package:flutter_lecheta/pages/hello_page1.dart';
 import 'package:flutter_lecheta/pages/hello_page2.dart';
 import 'package:flutter_lecheta/pages/hello_page3.dart';
 import 'package:flutter_lecheta/utils/nav.dart';
@@ -12,7 +11,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Hello Flutter",
+          "Dogs",
         ),
         centerTitle: true,
       ),
@@ -22,68 +21,77 @@ class HomePage extends StatelessWidget {
 
   _body(context) {
     return Container(
-      padding: EdgeInsets.all(16),
-      color: Colors.white,
+        padding: EdgeInsets.all(16),
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _text(),
-            _pageView(),
-            _buttons(context)
-          ],
+          children: <Widget>[_text(), _pageView(), _buttons()],
         ));
   }
 
   Container _pageView() {
     return Container(
-            height: 300,
-            margin: EdgeInsets.all(20),
-            child: PageView(
+      height: 300,
+      margin: EdgeInsets.all(20),
+      child: PageView(
+        children: <Widget>[
+          _img("assets/images/dog1.png"),
+          _img("assets/images/dog2.png"),
+          _img("assets/images/dog3.png"),
+          _img("assets/images/dog4.png"),
+          _img("assets/images/dog5.png")
+        ],
+      ),
+    );
+  }
+
+  _buttons() {
+    return Builder(
+      builder: (BuildContext context) {
+        return Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _img("assets/images/dog1.png"),
-                _img("assets/images/dog2.png"),
-                _img("assets/images/dog3.png"),
-                _img("assets/images/dog4.png"),
-                _img("assets/images/dog5.png")
+                RedBotton("List View",
+                    onPressed: () =>
+                        _onClickNavigator(context, HelloListView())),
+                RedBotton("Page 2",
+                    onPressed: () => _onClickNavigator(context, HelloPage2())),
+                RedBotton("Page 3",
+                    onPressed: () => _onClickNavigator(context, HelloPage3())),
               ],
             ),
-          );
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RedBotton("Snack", onPressed: () => _onClicSnack(context)),
+                RedBotton("Dialog", onPressed: _onClickDialog),
+                RedBotton("Toast", onPressed: _onClickToast),
+              ],
+            )
+          ],
+        );
+      },
+    );
   }
 
-   _buttons(context) {
-    return Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  RedBotton("List View", onPressed: () => _onClickNavigator(context, HelloListView())),
-                  RedBotton("Page 2", onPressed: () => _onClickNavigator(context, HelloPage2())),
-                  RedBotton("Page 3", onPressed: () => _onClickNavigator(context, HelloPage3())),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  RedBotton("Snack", onPressed: _onClicSnack),
-                  RedBotton("Dialog", onPressed: _onClickDialog),
-                  RedBotton("Toast", onPressed: _onClickToast),
-                ],
-              )
-            ],
-          );
+  _onClicSnack(context) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Fala Thiago"),
+      action: SnackBarAction(
+          textColor: Colors.white,
+          label: "OK", onPressed: () {
+        print("OK");
+        }),
+    ));
   }
 
-  _onClicSnack() {
-  }
+  _onClickDialog() {}
 
-  _onClickDialog() {
-  }
-
-  _onClickToast() {
-  }
+  _onClickToast() {}
 
   void _onClickNavigator(BuildContext context, Widget page) async {
-
     String s = await push(context, page);
 
     print(">> $s");
@@ -91,7 +99,7 @@ class HomePage extends StatelessWidget {
 
   _text() {
     return Text(
-      "Hello World",
+      "Dogs",
       style: TextStyle(
         fontSize: 30,
         color: Colors.red,
@@ -105,10 +113,10 @@ class HomePage extends StatelessWidget {
   _img(String img) {
     return Container(
       margin: EdgeInsets.all(20),
-      child: Image.asset(img,
-      fit: BoxFit.cover,
+      child: Image.asset(
+        img,
+        fit: BoxFit.cover,
       ),
     );
   }
-
 }

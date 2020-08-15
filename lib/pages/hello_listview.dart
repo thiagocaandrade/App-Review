@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lecheta/utils/nav.dart';
+
+import 'dog_page.dart';
 
 class Dog {
   String nome;
@@ -92,6 +94,13 @@ class _HelloListViewState extends State<HelloListView> {
             ),
           ),
         ),
+        GestureDetector(
+          onTap: () {
+            push(
+                context, DogPage(dog
+                ));
+          },
+        )
       ],
     );
   }
