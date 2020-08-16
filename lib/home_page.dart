@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 RedBotton("Snack", onPressed: () => _onClicSnack(context)),
-                RedBotton("Dialog", onPressed: _onClickDialog),
+                RedBotton("Dialog", onPressed:() => _onClickDialog(context)),
                 RedBotton("Toast", onPressed: _onClickToast),
               ],
             )
@@ -87,7 +87,32 @@ class HomePage extends StatelessWidget {
     ));
   }
 
-  _onClickDialog() {}
+  _onClickDialog(BuildContext context) {
+    showDialog(context: context,barrierDismissible: false, builder: (context)
+    {
+      return WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
+        title: Text("Alerta Thiago"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("Cancelar"),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          FlatButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.pop(context);
+              print("OK!!!!");
+          },
+          )
+        ],
+      ),
+      );
+    });
+  }
 
   _onClickToast() {}
 
