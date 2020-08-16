@@ -4,6 +4,8 @@ import 'package:flutter_lecheta/pages/hello_page2.dart';
 import 'package:flutter_lecheta/pages/hello_page3.dart';
 import 'package:flutter_lecheta/utils/nav.dart';
 import 'package:flutter_lecheta/widgets/red_botton.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
@@ -114,7 +116,18 @@ class HomePage extends StatelessWidget {
     });
   }
 
-  _onClickToast() {}
+  _onClickToast() {
+    Fluttertoast.showToast(
+        msg: "Esse é um Toast Thiago",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+  }
 
   void _onClickNavigator(BuildContext context, Widget page) async {
     String s = await push(context, page);
