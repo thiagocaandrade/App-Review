@@ -4,46 +4,48 @@ import 'package:flutter/material.dart';
 class DrawerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text("Thiago Andrade"),
-            accountEmail: Text("thiago@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/dog2.png"),
+    return SafeArea(
+      child: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Thiago Andrade"),
+              accountEmail: Text("thiago@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/dog2.png"),
+              ),
             ),
-          ),
-          ListTile(
-            leading: Icon(Icons.star),
-            title: Text("Favoritos"),
-            subtitle: Text("mais informações...."),
-            trailing: Icon(Icons.arrow_forward),
-            onTap: () {
-              print("Item 1");
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text("Ajuda"),
-            subtitle: Text("mais informações...."),
-            trailing: Icon(Icons.arrow_forward),
-            onTap: () {
-              print("Item 1");
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text("Logout"),
-            trailing: Icon(Icons.arrow_forward),
-            onTap: () {
-              print("Item 1");
-              Navigator.pop(context);
-            },
-          )
-        ],
+            ListTile(
+              leading: Icon(Icons.star),
+              title: Text("Favoritos"),
+              subtitle: Text("mais informações...."),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                print("Item 1");
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.help),
+              title: Text("Ajuda"),
+              subtitle: Text("mais informações...."),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                print("Item 1");
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text("Logout"),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                print("Item 1");
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
       ),
     );
   }
