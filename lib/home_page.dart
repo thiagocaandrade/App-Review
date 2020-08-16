@@ -24,11 +24,12 @@ class HomePage extends StatelessWidget {
           onPressed: () {
         _onClickFab();
       }),
+      drawer: Drawer(
+      ),
     );
   }
 
   _onClickFab(){
-
 
   }
 
